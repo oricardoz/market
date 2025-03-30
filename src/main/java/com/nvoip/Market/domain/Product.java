@@ -1,5 +1,7 @@
 package com.nvoip.Market.domain;
 
+import com.nvoip.Market.dto.ProductCreateRequestDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,5 +31,11 @@ public class Product {
     private String description;
 
     private double value;
+
+    public Product(ProductCreateRequestDTO request) {
+        this.name = request.name();
+        this.description = request.description();
+        this.value = request.price();
+    }
     
 }
