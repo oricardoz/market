@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nvoip.market.dto.PurchaseCreateDTO;
 import com.nvoip.market.service.PurchaseService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -18,7 +19,7 @@ public class PurchaseController {
     private final PurchaseService purchaseService;
 
     @PostMapping
-    public void create(@RequestBody PurchaseCreateDTO request) {
+    public void create(@Valid @RequestBody PurchaseCreateDTO request) {
         purchaseService.create(request);
     }
 

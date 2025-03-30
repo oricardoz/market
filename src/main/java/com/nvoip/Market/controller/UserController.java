@@ -16,6 +16,7 @@ import com.nvoip.market.domain.enums.PurchaseStatus;
 import com.nvoip.market.dto.UserCreateDTO;
 import com.nvoip.market.service.UserService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -36,9 +37,10 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody UserCreateDTO userCreateDTO) {
-        return ResponseEntity.created(URI.create("/users/" + userService.create(userCreateDTO).getId()))
-            .body(userService.create(userCreateDTO));
+    public ResponseEntity<User> create(@Valid @RequestBody UserCreateDTO userCreateDTO) {
+        User user = userService.create(userCreateDTO);
+        return ResponseEntity.created(URI.create("/users/" + user.getId()))
+            .body(user);
     }
 
     @GetMapping("/{id}/purchases")

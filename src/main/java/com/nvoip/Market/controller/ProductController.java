@@ -13,6 +13,7 @@ import com.nvoip.market.domain.Product;
 import com.nvoip.market.dto.ProductCreateRequestDTO;
 import com.nvoip.market.service.ProductService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -33,7 +34,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public void create(@RequestBody ProductCreateRequestDTO request) {
+    public void create(@Valid @RequestBody ProductCreateRequestDTO request) {
         productService.create(request);
     }
 
