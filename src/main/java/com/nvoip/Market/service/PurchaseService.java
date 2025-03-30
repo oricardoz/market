@@ -24,8 +24,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PurchaseService {
 
-    private final StockService stockService;
-
     private final UserRepository userRepository;
 
     private final ProductRepository productRepository;
@@ -65,8 +63,8 @@ public class PurchaseService {
 
         PurchaseItem purchaseItem = PurchaseItem.builder()
             .purchase(purchase)
-            .unitPrice(product.getValue())
-            .totalPrice(product.getValue() * request.quantity())
+            .unitPrice(product.getPrice())
+            .totalPrice(product.getPrice() * request.quantity())
             .product(product)
             .quantity(request.quantity())
             .build();

@@ -30,12 +30,12 @@ public class Product {
 
     private String description;
 
-    private double value;
+    private Double price;
 
     public Product(ProductCreateRequestDTO request) {
         this.name = request.name();
         this.description = request.description();
-        this.value = request.price();
+        this.price = request.price();
     }
     
 }
