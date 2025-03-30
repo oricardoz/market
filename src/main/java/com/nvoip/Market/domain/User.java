@@ -33,5 +33,12 @@ public class User {
     private String password;
 
     private Status status;
+
+    public User(String name, String numbersip, String password) {
+        this.name = name;
+        this.numbersip = numbersip;
+        this.password = password;
+        this.status = Status.ACTIVE;
+    }
     
 }
