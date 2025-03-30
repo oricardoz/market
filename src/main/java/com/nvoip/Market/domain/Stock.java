@@ -1,5 +1,7 @@
 package com.nvoip.Market.domain;
 
+import com.nvoip.Market.dto.AddStockRequestDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,5 +33,10 @@ public class Stock {
     private Product product;
 
     private int quantity;
+
+    public Stock(Product product) {
+        this.product = product;
+        this.quantity = 0;
+    }
     
 }
