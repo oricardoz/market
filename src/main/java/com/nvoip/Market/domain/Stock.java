@@ -1,7 +1,5 @@
 package com.nvoip.Market.domain;
 
-import com.nvoip.Market.dto.AddStockRequestDTO;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
