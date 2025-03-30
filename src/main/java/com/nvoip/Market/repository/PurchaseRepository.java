@@ -1,8 +1,8 @@
-package com.nvoip.Market.repository;
+package com.nvoip.market.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.nvoip.Market.domain.Purchase;
+import com.nvoip.market.domain.Purchase;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 

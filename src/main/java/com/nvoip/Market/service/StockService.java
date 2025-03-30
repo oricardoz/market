@@ -1,12 +1,12 @@
-package com.nvoip.Market.service;
+package com.nvoip.market.service;
 
 import org.springframework.stereotype.Service;
 
-import com.nvoip.Market.domain.Product;
-import com.nvoip.Market.domain.Stock;
-import com.nvoip.Market.dto.AddStockRequestDTO;
-import com.nvoip.Market.repository.ProductRepository;
-import com.nvoip.Market.repository.StockRepository;
+import com.nvoip.market.domain.Product;
+import com.nvoip.market.domain.Stock;
+import com.nvoip.market.dto.AddStockRequestDTO;
+import com.nvoip.market.repository.ProductRepository;
+import com.nvoip.market.repository.StockRepository;
 
 import lombok.RequiredArgsConstructor;
 

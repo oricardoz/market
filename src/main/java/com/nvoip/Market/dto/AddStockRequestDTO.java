@@ -1,4 +1,4 @@
-package com.nvoip.Market.dto;
+package com.nvoip.market.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

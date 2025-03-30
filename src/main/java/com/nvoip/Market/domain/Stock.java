@@ -1,4 +1,4 @@
-package com.nvoip.Market.domain;
+package com.nvoip.market.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

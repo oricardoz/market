@@ -1,4 +1,4 @@
-package com.nvoip.Market.domain.enums;
+package com.nvoip.market.domain.enums;
 
 public enum Status {
     ACTIVE,

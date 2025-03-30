@@ -1,8 +1,8 @@
-package com.nvoip.Market.domain;
+package com.nvoip.market.domain;
 
 import java.time.LocalDateTime;
 
-import com.nvoip.Market.domain.enums.PurchaseStatus;
+import com.nvoip.market.domain.enums.PurchaseStatus;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

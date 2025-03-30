@@ -1,21 +1,21 @@
-package com.nvoip.Market.service;
+package com.nvoip.market.service;
 
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 
-import com.nvoip.Market.domain.Product;
-import com.nvoip.Market.domain.Purchase;
-import com.nvoip.Market.domain.PurchaseItem;
-import com.nvoip.Market.domain.Stock;
-import com.nvoip.Market.domain.User;
-import com.nvoip.Market.domain.enums.PurchaseStatus;
-import com.nvoip.Market.dto.PurchaseCreateDTO;
-import com.nvoip.Market.repository.ProductRepository;
-import com.nvoip.Market.repository.PurchaseItemRepository;
-import com.nvoip.Market.repository.PurchaseRepository;
-import com.nvoip.Market.repository.StockRepository;
-import com.nvoip.Market.repository.UserRepository;
+import com.nvoip.market.domain.Product;
+import com.nvoip.market.domain.Purchase;
+import com.nvoip.market.domain.PurchaseItem;
+import com.nvoip.market.domain.Stock;
+import com.nvoip.market.domain.User;
+import com.nvoip.market.domain.enums.PurchaseStatus;
+import com.nvoip.market.dto.PurchaseCreateDTO;
+import com.nvoip.market.repository.ProductRepository;
+import com.nvoip.market.repository.PurchaseItemRepository;
+import com.nvoip.market.repository.PurchaseRepository;
+import com.nvoip.market.repository.StockRepository;
+import com.nvoip.market.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.nvoip.Market;
+package com.nvoip.market;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

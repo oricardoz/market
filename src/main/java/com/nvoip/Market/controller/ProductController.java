@@ -1,4 +1,4 @@
-package com.nvoip.Market.controller;
+package com.nvoip.market.controller;
 
 import java.util.List;
 
@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nvoip.Market.domain.Product;
-import com.nvoip.Market.dto.ProductCreateRequestDTO;
-import com.nvoip.Market.service.ProductService;
+import com.nvoip.market.domain.Product;
+import com.nvoip.market.dto.ProductCreateRequestDTO;
+import com.nvoip.market.service.ProductService;
+
 import lombok.RequiredArgsConstructor;
 
 @RestController

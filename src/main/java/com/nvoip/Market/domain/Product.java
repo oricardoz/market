@@ -1,6 +1,6 @@
-package com.nvoip.Market.domain;
+package com.nvoip.market.domain;
 
-import com.nvoip.Market.dto.ProductCreateRequestDTO;
+import com.nvoip.market.dto.ProductCreateRequestDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

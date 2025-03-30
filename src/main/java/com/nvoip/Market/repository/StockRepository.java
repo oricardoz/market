@@ -1,10 +1,10 @@
-package com.nvoip.Market.repository;
+package com.nvoip.market.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.nvoip.Market.domain.Stock;
+import com.nvoip.market.domain.Stock;
 
 public interface StockRepository extends JpaRepository<Stock, Long> {
     

@@ -1,12 +1,12 @@
-package com.nvoip.Market.controller;
+package com.nvoip.market.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nvoip.Market.dto.AddStockRequestDTO;
-import com.nvoip.Market.service.StockService;
+import com.nvoip.market.dto.AddStockRequestDTO;
+import com.nvoip.market.service.StockService;
 
 import lombok.RequiredArgsConstructor;
 

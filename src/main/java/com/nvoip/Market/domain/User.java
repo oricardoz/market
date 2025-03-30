@@ -1,6 +1,6 @@
-package com.nvoip.Market.domain;
+package com.nvoip.market.domain;
 
-import com.nvoip.Market.domain.enums.Status;
+import com.nvoip.market.domain.enums.Status;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
