@@ -11,6 +11,10 @@ import com.nvoip.market.domain.Stock;
 import com.nvoip.market.domain.User;
 import com.nvoip.market.domain.enums.PurchaseStatus;
 import com.nvoip.market.dto.PurchaseCreateDTO;
+import com.nvoip.market.exception.InsufficientStockException;
+import com.nvoip.market.exception.ProductNotFoundException;
+import com.nvoip.market.exception.StockNotFoundException;
+import com.nvoip.market.exception.UserNotFoundException;
 import com.nvoip.market.repository.ProductRepository;
 import com.nvoip.market.repository.PurchaseItemRepository;
 import com.nvoip.market.repository.PurchaseRepository;
@@ -38,16 +42,16 @@ public class PurchaseService {
     public void create(PurchaseCreateDTO request) {
 
         User user = userRepository.findById(request.userId())
-            .orElseThrow(() -> new RuntimeException("User not found"));
+            .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         Product product = productRepository.findById(request.productId())
-            .orElseThrow(() -> new RuntimeException("Product not found"));
+            .orElseThrow(() -> new ProductNotFoundException("Product not found"));
 
         Stock stock = stockRepository.findByProductId(product.getId())
-            .orElseThrow(() -> new RuntimeException("Stock not found"));
+            .orElseThrow(() -> new StockNotFoundException("Stock not found"));
 
         if (stock.getQuantity() < request.quantity()) {
-            throw new RuntimeException("Insufficient stock");
+            throw new InsufficientStockException("Insufficient stock");
         }
 
         stock.setQuantity(stock.getQuantity() - request.quantity());
