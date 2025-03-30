@@ -18,7 +18,7 @@ public class StockService {
 
     private final ProductRepository productRepository;
 
-    public void addStock(AddStockRequestDTO request) {
+    public Stock addStock(AddStockRequestDTO request) {
 
         Product product = productRepository.findById(request.productId())
             .orElseThrow(() -> new RuntimeException("Product not found"));
@@ -28,6 +28,8 @@ public class StockService {
 
         stock.setQuantity(stock.getQuantity() + request.quantity());
         stockRepository.save(stock);
+
+        return stock;
     }
 
 }

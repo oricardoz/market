@@ -1,7 +1,9 @@
 package com.nvoip.market.controller;
 
+import java.net.URI;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +36,10 @@ public class ProductController {
     }
 
     @PostMapping
-    public void create(@Valid @RequestBody ProductCreateRequestDTO request) {
-        productService.create(request);
+    public ResponseEntity<Product> create(@Valid @RequestBody ProductCreateRequestDTO request) {
+        Product product = productService.create(request);
+        return ResponseEntity.created(URI.create("/products/" + product.getId()))
+            .body(product);
     }
 
 }

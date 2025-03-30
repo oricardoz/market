@@ -39,7 +39,7 @@ public class PurchaseService {
     private final PurchaseItemRepository purchaseItemRepository;
 
     @Transactional
-    public void create(PurchaseCreateDTO request) {
+    public Purchase create(PurchaseCreateDTO request) {
 
         User user = userRepository.findById(request.userId())
             .orElseThrow(() -> new UserNotFoundException("User not found"));
@@ -75,7 +75,7 @@ public class PurchaseService {
 
         purchaseItemRepository.save(purchaseItem);
 
-    
+        return purchase;
     }
 
 }
