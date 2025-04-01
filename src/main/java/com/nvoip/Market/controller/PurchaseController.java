@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nvoip.market.domain.Purchase;
 import com.nvoip.market.dto.PurchaseCreateDTO;
+import com.nvoip.market.service.PaymentService;
 import com.nvoip.market.service.PurchaseService;
 
 import jakarta.validation.Valid;
@@ -19,13 +20,20 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/purchases")
 @RequiredArgsConstructor
 public class PurchaseController {    
+
     private final PurchaseService purchaseService;
+    private final PaymentService paymentService;
 
     @PostMapping
     public ResponseEntity<Purchase> create(@Valid @RequestBody PurchaseCreateDTO request) {
         Purchase purchase = purchaseService.create(request);
         return ResponseEntity.created(URI.create("/purchases/" + purchase.getId()))
             .body(purchase);
+    }
+
+    @PostMapping("/payment")
+    public void payment() {
+        paymentService.processPayment();
     }
 
 
