@@ -22,19 +22,11 @@ import lombok.RequiredArgsConstructor;
 public class PurchaseController {    
 
     private final PurchaseService purchaseService;
-    private final PaymentService paymentService;
-
     @PostMapping
     public ResponseEntity<Purchase> create(@Valid @RequestBody PurchaseCreateDTO request) {
         Purchase purchase = purchaseService.create(request);
         return ResponseEntity.created(URI.create("/purchases/" + purchase.getId()))
             .body(purchase);
     }
-
-    @PostMapping("/payment")
-    public void payment() {
-        paymentService.processPayment();
-    }
-
 
 }

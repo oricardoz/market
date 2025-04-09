@@ -16,28 +16,71 @@ import com.mercadopago.resources.preference.Preference;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.exceptions.MPApiException;
 
+import com.nvoip.market.config.MercadoPagoProperties;
+import com.nvoip.market.domain.Purchase;
+import com.nvoip.market.domain.PurchaseItem;
+import com.nvoip.market.domain.User;
+import com.nvoip.market.repository.PurchaseItemRepository;
+import com.nvoip.market.repository.PurchaseRepository;
+import com.nvoip.market.repository.UserRepository;
+import com.nvoip.market.exception.PurchaseNotFoundException;
+import com.nvoip.market.exception.UserNotFoundException;
+
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class PaymentService {
 
-    public void processPayment() {
+    private final PurchaseRepository purchaseRepository;
+    private final PurchaseItemRepository purchaseItemRepository;
+    private final UserRepository userRepository;
+    private final MercadoPagoProperties mercadoPagoProperties;
+
+    private List<PreferenceItemRequest> createPreferenceItems(List<PurchaseItem> purchaseItems) {
+        List<PreferenceItemRequest> items = new ArrayList<>();
         
-        MercadoPagoConfig.setAccessToken("your-code");
+        for (PurchaseItem purchaseItem : purchaseItems) {
+            PreferenceItemRequest itemRequest =
+                PreferenceItemRequest.builder()
+                    .id(purchaseItem.getProduct().getId().toString())
+                    .title(purchaseItem.getProduct().getName())
+                    .description(purchaseItem.getProduct().getDescription())
+                    .pictureUrl("https://www.myapp.com/myimage.jpg") 
+                    .categoryId("general") 
+                    .quantity(purchaseItem.getQuantity())
+                    .currencyId("BRL")
+                    .unitPrice(new BigDecimal(purchaseItem.getUnitPrice()))
+                    .build();
+            
+            items.add(itemRequest);
+        }
+        
+        return items;
+    }
+
+    public String processPayment(Long purchaseId, Long userId) {
+    
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
+        
+        Purchase purchase = purchaseRepository.findById(purchaseId)
+            .orElseThrow(() -> new PurchaseNotFoundException("Compra não encontrada"));
+        
+        if (!purchase.getUser().getId().equals(userId)) {
+            throw new RuntimeException("Esta compra não pertence ao usuário informado");
+        }
+
+        List<PurchaseItem> purchaseItems = purchaseItemRepository.findByPurchaseId(purchaseId);
+        
+        if (purchaseItems.isEmpty()) {
+            throw new RuntimeException("Nenhum item encontrado para esta compra");
+        }
+        
+        MercadoPagoConfig.setAccessToken(mercadoPagoProperties.getAccessToken());
         PreferenceClient client = new PreferenceClient();
         
-        PreferenceItemRequest itemRequest =
-            PreferenceItemRequest.builder()
-                .id("1234")
-                .title("Peidante")
-                .description("Dummy description")
-                .pictureUrl("https://www.myapp.com/myimage.jpg")
-                .categoryId("car_electronics")
-                .quantity(1)
-                .currencyId("BRL")
-                .unitPrice(new BigDecimal("250"))
-                .build();
-        
-        List<PreferenceItemRequest> items = new ArrayList<>();
-        items.add(itemRequest);
+        List<PreferenceItemRequest> items = createPreferenceItems(purchaseItems);
     
         PreferenceRequest preferenceRequest = PreferenceRequest.builder()
             .backUrls(
@@ -57,9 +100,10 @@ public class PaymentService {
            
         try {
             Preference preference = client.create(preferenceRequest);
-            System.out.println(preference.getInitPoint());
+            return preference.getInitPoint();
         } catch (MPException | MPApiException e) {
             e.printStackTrace();
+            return null;
         }
     }
 }

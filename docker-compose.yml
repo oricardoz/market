@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  postgree:
+    image: postgres:latest
+    ports: 
+      - "5432:5432"
+    networks: 
+      - postgree_network
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: marketdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgAdmin:
+    image: dpage/pgadmin4
+    ports: 
+      - "8080:80"
+    networks: 
+      - postgree_network
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: ricardoapzaghetto@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: root
+
+networks: 
+  postgree_network: 
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+
+
+
